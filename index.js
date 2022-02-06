@@ -1,11 +1,11 @@
-
+const body = document.querySelector("body");
 
 let submitData = (username, emailAddress) => {
 	
 	// Data being sent in fetch() must be stored in the body of the configurationObject
 	const submittedData = {
-		username: username,
-		emailAddress: emailAddress
+		name: username,
+		email: emailAddress
 	};
 	
 	// The configurationObject contains three core components that are needed for standard POST requests: the HTTP verb, the headers, and the body.
@@ -18,4 +18,14 @@ let submitData = (username, emailAddress) => {
 		// By passing an object in, JSON.stringify() will return a string.
 		body: JSON.stringify(submittedData),
 	};
+	
+	return fetch("http://localhost:3000/users", configurationObject)
+	.then(resp => resp.json())
+	.then(json => {
+		body.append(json.id);
+	})
+	.catch( error => {
+		alert("Kuna Bug Mahali!");
+		body.append(error);
+	});
 }
