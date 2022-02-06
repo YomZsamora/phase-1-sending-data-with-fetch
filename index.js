@@ -1,3 +1,5 @@
+
+// For appending id number to appear on the page.
 const body = document.querySelector("body");
 
 let submitData = (username, emailAddress) => {
